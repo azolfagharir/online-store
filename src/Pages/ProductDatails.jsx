@@ -2,8 +2,16 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { OrbitProgress } from "react-loading-indicators";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchProducts } from "../Features/Product/ProductSlice";
+import { useEffect } from "react";
+
 
 function ProductDetails() {
+    const dispatch = useDispatch();
+    useEffect(() => {
+      dispatch(fetchProducts());
+    }, [dispatch]);
   const { id } = useParams();
 
   const Products = useSelector((state) => state.products.Products);
